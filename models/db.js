@@ -8,4 +8,5 @@ mongoose.connect(connectionString, { useNewUrlParser: true , useUnifiedTopology:
 });
 
 require('./employee.model');
+require('./brew.model');
 

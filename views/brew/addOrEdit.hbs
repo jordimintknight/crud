@@ -1,0 +1,24 @@
+<h3>{{viewTitle}}</h3>
+
+
+
+<form action="/brew" method="POST" autocomplete="off">
+    <input type="hidden" name="_id" value="{{employee._id}}">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" class="form-control" name="fullName" placeholder="Full Name" value="{{brew.fullName}}">
+        <div class="text-danger">
+            {{brew.fullNameError}}</div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Date</label>
+            <input type="text" class="form-control" name="date" placeholder="mm/dd/yyyy" value="{{brew.date}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <a class="btn btn-secondary" href="/brew/list"><i class="fa fa-list-alt"></i> View All</a>
+    </div>
+</form>
