@@ -3,15 +3,13 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
 
-
-
 router.get('/', (req, res) => {
+    
     res.render("employee/addOrEdit", {
         viewTitle: "Insert Employee"
+        
     });
 });
-
-
 
 router.post('/', (req, res) => {
     if (req.body._id == '')
@@ -50,8 +48,8 @@ function updateRecord(req, res) {
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
-                res.render("employee/edit", {
-                    viewTitle: 'Update Employeeeeee',
+                res.render("employee/addOrEdit", {
+                    viewTitle: 'Update Employee',
                     employee: req.body
                 });
             }
@@ -77,7 +75,6 @@ router.get('/list', (req, res) => {
 });
 
 
-
 function handleValidationError(err, body) {
     for (field in err.errors) {
         switch (err.errors[field].path) {
@@ -98,7 +95,7 @@ router.get('/:id', (req, res) => {
         if (!err) {
             res.render("employee/addOrEdit", {
                 viewTitle: "Update Employee",
-                employee: doc
+                employee: doc.toObject(),
             });
         }
     });

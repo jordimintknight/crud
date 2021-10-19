@@ -14,6 +14,14 @@ var employeeSchema = new mongoose.Schema({
     city: {
         type: String
     }
+},{
+    toObject: {
+        virtuals: true,
+    },
+    toJSON: {
+        virtuals: true,
+    },
+    
 });
 
 // Custom validation for email
