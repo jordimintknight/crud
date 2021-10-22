@@ -20,12 +20,10 @@ router.post('/', (req, res) => {
 
 
 function insertRecord(req, res) {
-    var employee = new Brew();
-    employee.fullName = req.body.fullName;
-    employee.email = req.body.email;
-    employee.mobile = req.body.mobile;
-    employee.city = req.body.city;
-    employee.save((err, doc) => {
+    var brew = new Brew();
+    brew.fullName = req.body.fullName;
+    brew.date = req.body.date;
+    brew.save((err, doc) => {
         if (!err)
             res.redirect('Brew/list');
         else {
@@ -33,7 +31,7 @@ function insertRecord(req, res) {
                 handleValidationError(err, req.body);
                 res.render("brew/addOrEdit", {
                     viewTitle: "Insert brew",
-                    employee: req.body
+                    brew: req.body
                 });
             }
             else
@@ -43,14 +41,14 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    Brew.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err) { res.redirect('brew/list'); }
         else {
             if (err.name == 'ValidationError') {
                 handleValidationError(err, req.body);
                 res.render("brew/addOrEdit", {
                     viewTitle: 'Update brew',
-                    employee: req.body
+                    brew: req.body
                 });
             }
             else
@@ -95,7 +93,7 @@ router.get('/:id', (req, res) => {
         if (!err) {
             res.render("brew/addOrEdit", {
                 viewTitle: "Update brew",
-                employee: doc.toObject(),
+                brew: doc.toObject(),
             });
         }
     });
@@ -106,7 +104,7 @@ router.get('/delete/:id', (req, res) => {
         if (!err) {
             res.redirect('/brew/list');
         }
-        else { console.log('Error in employee delete :' + err); }
+        else { console.log('Error in Brew delete :' + err); }
     });
 });
 

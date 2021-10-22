@@ -6,7 +6,7 @@ var brewSchema = new mongoose.Schema({
         required: 'This field is required.'
     },
     date: {
-        type: Date
+        type: String
     }
 });
 
